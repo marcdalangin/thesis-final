@@ -10,12 +10,12 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 
 # Model / data parameters
-num_classes = 10  # Number of classes in your dataset
+num_classes = 5  # Number of classes in your dataset
 input_shape = (28, 28, 3)
 batch_size = 16
-epochs = 15
+epochs = 20
 DATADIR = "train_dataset"
-CATEGORIES = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+CATEGORIES = ["1", "2", "3", "4", "5"]
 NAME = "edensenet{}".format(epochs)
 
 
