@@ -80,7 +80,7 @@ history = model.fit(
 )
 score = model.evaluate(x_test, y_test, verbose=0)
 model.save(
-    "trained_model_0919.h5"
+    "model/trained_model_0919.h5"
 )  # Rename model with this format "trained_model_YYYYMMDDvX.h5"
 
 plot_model(
@@ -105,6 +105,3 @@ plt.title("Training History")
 
 # Save the figure as a .jpg file
 plt.savefig("training_history.jpg")
-
-# Show the plot
-plt.show()
