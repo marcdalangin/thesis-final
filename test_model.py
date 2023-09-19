@@ -4,22 +4,29 @@ import numpy as np
 import keras
 
 # Load your trained model (Latest trained model should be used here)
-model = keras.models.load_model("experiment_0911.h5")
+model = keras.models.load_model("model/trained_model_0919.h5")
 
 # Define the class labels for hand gestures
-CATEGORIES = ["0", "1", "2", "3", "4", "5"]
+CATEGORIES = ["1", "2", "3", "4", "5"]
 
 
-# Function to preprocess a single input image
+# # Function to preprocess a single input image
+# def preprocess_image(image):
+#     # Resize the image to the input shape of the model
+#     image = cv2.resize(image, (28, 28))
+#     # Convert the image to grayscale
+#     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+#     # Normalize the image
+#     image = image.astype("float32") / 255.0
+#     # Expand dimensions to make it (28, 28, 1)
+#     image = np.expand_dims(image, axis=-1)
+#     return image
+
+# Function to preprocess the input image
 def preprocess_image(image):
-    # Resize the image to the input shape of the model
     image = cv2.resize(image, (28, 28))
-    # Convert the image to grayscale
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    # Normalize the image
-    image = image.astype("float32") / 255.0
-    # Expand dimensions to make it (None, 28, 28, 1)
-    image = np.expand_dims(image, axis=-1)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    image = image.astype('float32') / 255.0
     return image
 
 
@@ -45,7 +52,6 @@ def predict_hand_gestures(images):
 
 # Load and process multiple user input images
 image_paths = [
-    "validation_dataset/0/Sign_0_60.png",
     "validation_dataset/1/Sign_1_46.png",
     "validation_dataset/2/IMG_4101.JPG",
     "validation_dataset/3/Sign_3_40.png",
