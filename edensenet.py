@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 num_classes = 5  # Number of classes in your dataset
 input_shape = (28, 28, 3)
 batch_size = 16
-epochs = 20
+epochs = 13
 DATADIR = "train_dataset"
 CATEGORIES = ["1", "2", "3", "4", "5"]
 NAME = "edensenet{}".format(epochs)
@@ -80,7 +80,7 @@ history = model.fit(
 )
 score = model.evaluate(x_test, y_test, verbose=0)
 model.save(
-    "trained_model_0903v2.h5"
+    "trained_model_0919.h5"
 )  # Rename model with this format "trained_model_YYYYMMDDvX.h5"
 
 plot_model(
