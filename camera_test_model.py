@@ -3,10 +3,10 @@ import numpy as np
 from keras.models import load_model
 
 # Load the pre-trained model
-model = load_model("model/trained_model_0919.h5")
+model = load_model("model/trained_model_1003.h5")
 
 # Define the class labels for hand gestures
-CATEGORIES = ["1", "2", "3", "4", "5"]
+CATEGORIES = ["draw", "next", "point", "prev", "undo"]
 
 
 # Function to preprocess the input image

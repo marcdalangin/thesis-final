@@ -4,7 +4,7 @@ import numpy as np
 import keras
 
 # Load your trained model (Latest trained model should be used here)
-model = keras.models.load_model("model/trained_model_0919.h5")
+model = keras.models.load_model("model/trained_model_1003.h5")
 
 # Define the class labels for hand gestures
 CATEGORIES = ["1", "2", "3", "4", "5"]
@@ -22,11 +22,12 @@ CATEGORIES = ["1", "2", "3", "4", "5"]
 #     image = np.expand_dims(image, axis=-1)
 #     return image
 
+
 # Function to preprocess the input image
 def preprocess_image(image):
     image = cv2.resize(image, (28, 28))
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    image = image.astype('float32') / 255.0
+    image = image.astype("float32") / 255.0
     return image
 
 

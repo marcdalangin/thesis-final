@@ -26,12 +26,12 @@ seed_value = 1
 tf.random.set_seed(seed_value)
 
 # Model / data parameters
-num_classes = 6
+num_classes = 5
 input_shape = (28, 28, 1)
 batch_size = 16
 epochs = 10
-DATADIR = "train_dataset"
-CATEGORIES = ["0", "1", "2", "3", "4", "5"]
+DATADIR = "gesture_dataset"
+CATEGORIES = ["draw", "next", "point", "prev", "undo"]
 
 
 # Load the data and split it between train and test sets
