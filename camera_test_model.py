@@ -3,17 +3,19 @@ import numpy as np
 from keras.models import load_model
 
 # Load the pre-trained model
-model = load_model('model/trained_model_0903v2.h5')
+model = load_model("model/trained_model_0919.h5")
 
 # Define the class labels for hand gestures
-CATEGORIES = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+CATEGORIES = ["1", "2", "3", "4", "5"]
+
 
 # Function to preprocess the input image
 def preprocess_image(image):
     image = cv2.resize(image, (28, 28))
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    image = image.astype('float32') / 255.0
+    image = image.astype("float32") / 255.0
     return image
+
 
 # Function to predict the hand gesture
 def predict_hand_gesture(image):
@@ -23,6 +25,7 @@ def predict_hand_gesture(image):
     predicted_class_label = CATEGORIES[predicted_class_index]
     confidence = prediction[0][predicted_class_index]
     return predicted_class_label, confidence
+
 
 # Capture video from the camera
 cap = cv2.VideoCapture(0)  # 0 corresponds to the default camera
@@ -64,14 +67,14 @@ while True:
         cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
         # Display the predicted label and confidence on the frame
-        text = f'Predicted Gesture: {predicted_label} (Confidence: {confidence:.2f})'
+        text = f"Predicted Gesture: {predicted_label} (Confidence: {confidence:.2f})"
         cv2.putText(frame, text, (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
     # Display the frame
-    cv2.imshow('Hand Gesture Detection', frame)
+    cv2.imshow("Hand Gesture Detection", frame)
 
     # Break the loop when 'q' is pressed
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    if cv2.waitKey(1) & 0xFF == ord("q"):
         break
 
 # Release the camera and close the OpenCV windows
