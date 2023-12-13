@@ -112,6 +112,7 @@ while True:
     imgSmall = cv2.resize(img, (ws, hs))
     h, w, _ = imgCurrent.shape
     imgCurrent[0:hs, w - ws : w] = imgSmall
+    imgCurrent = cv2.resize(imgCurrent, (1920, 1080))
 
     cv2.imshow("Hand Gesture Recognition", imgCurrent)
     cv2.imshow("Image", img)
