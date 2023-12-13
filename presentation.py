@@ -4,7 +4,7 @@ import os
 import numpy as np
 
 # Parameters
-width, height = 1920, 1080
+width, height = 1280, 720
 gestureThreshold = 300
 folderPath = "presentation"
 
@@ -42,24 +42,8 @@ while True:
 
     # Find the hand and its landmarks
     hands, img = detectorHand.findHands(img)  # with draw
-
-    # Modify the Gesture Threshold Line
-    gestureLineColor = (
-        0,
-        255,
-        0,
-        100,
-    )  # Green color with transparency (B, G, R, Alpha)
-    gestureLineThickness = 5  # Thin line
-
     # Draw Gesture Threshold line
-    cv2.line(
-        img,
-        (0, gestureThreshold),
-        (width, gestureThreshold),
-        gestureLineColor,
-        gestureLineThickness,
-    )
+    cv2.line(img, (0, gestureThreshold), (width, gestureThreshold), (0, 255, 0), 10)
 
     if hands and buttonPressed is False:  # If hand is detected
         hand = hands[0]
@@ -129,9 +113,8 @@ while True:
     h, w, _ = imgCurrent.shape
     imgCurrent[0:hs, w - ws : w] = imgSmall
 
-    cv2.imshow("Slides", imgCurrent)
+    cv2.imshow("Hand Gesture Recognition", imgCurrent)
     cv2.imshow("Image", img)
-
     key = cv2.waitKey(1)
     if key == ord("q"):
         break
