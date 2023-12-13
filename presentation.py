@@ -18,7 +18,7 @@ detectorHand = HandDetector(detectionCon=0.8, maxHands=1)
 
 # Variables
 imgList = []
-delay = 30
+delay = 20
 buttonPressed = False
 counter = 0
 drawMode = False
