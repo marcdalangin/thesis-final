@@ -5,7 +5,7 @@ import numpy as np
 
 # Parameters
 width, height = 1920, 1080
-gestureThreshold = 300
+# gestureThreshold = 300
 folderPath = "presentation"
 
 # Camera Setup
@@ -14,7 +14,7 @@ cap.set(3, width)
 cap.set(4, height)
 
 # Hand Detector
-detectorHand = HandDetector(detectionCon=0.8, maxHands=1)
+detectorHand = HandDetector(detectionCon=0.8, maxHands=2)
 
 # Variables
 imgList = []
@@ -43,7 +43,7 @@ while True:
     # Find the hand and its landmarks
     hands, img = detectorHand.findHands(img)  # with draw
     # Draw Gesture Threshold line
-    cv2.line(img, (0, gestureThreshold), (width, gestureThreshold), (0, 255, 0), 10)
+    # cv2.line(img, (0, gestureThreshold), (width, gestureThreshold), (0, 255, 0), 10)
 
     if hands and buttonPressed is False:  # If hand is detected
         hand = hands[0]
@@ -56,23 +56,23 @@ while True:
         yVal = int(np.interp(lmList[8][1], [150, height - 150], [0, height]))
         indexFinger = xVal, yVal
 
-        if cy <= gestureThreshold:  # If hand is at the height of the face
-            if fingers == [1, 0, 0, 0, 0]:
-                print("Left")
-                buttonPressed = True
-                if imgNumber > 0:
-                    imgNumber -= 1
-                    annotations = [[]]
-                    annotationNumber = -1
-                    annotationStart = False
-            if fingers == [0, 0, 0, 0, 1]:
-                print("Right")
-                buttonPressed = True
-                if imgNumber < len(pathImages) - 1:
-                    imgNumber += 1
-                    annotations = [[]]
-                    annotationNumber = -1
-                    annotationStart = False
+        # if cy <= gestureThreshold:  # If hand is at the height of the face
+        if fingers == [1, 0, 0, 0, 0]:
+            print("Left")
+            buttonPressed = True
+            if imgNumber > 0:
+                imgNumber -= 1
+                annotations = [[]]
+                annotationNumber = -1
+                annotationStart = False
+        if fingers == [0, 0, 0, 0, 1]:
+            print("Right")
+            buttonPressed = True
+            if imgNumber < len(pathImages) - 1:
+                imgNumber += 1
+                annotations = [[]]
+                annotationNumber = -1
+                annotationStart = False
 
         if fingers == [0, 1, 1, 0, 0]:
             cv2.circle(imgCurrent, indexFinger, 12, (0, 0, 255), cv2.FILLED)
@@ -111,7 +111,7 @@ while True:
 
     imgSmall = cv2.resize(img, (ws, hs))
     h, w, _ = imgCurrent.shape
-    # imgCurrent[0:hs, w - ws : w] = imgSmall
+    imgCurrent[0:hs, w - ws : w] = imgSmall
     imgCurrent = cv2.resize(imgCurrent, (1920, 1080))
 
     cv2.imshow("Hand Gesture Recognition", imgCurrent)
