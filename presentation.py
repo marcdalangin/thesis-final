@@ -1,4 +1,6 @@
-from cvzone.HandTrackingModule import HandDetector
+# The code is implementing a hand gesture recognition system using the cvzone library in Python. It
+# uses the computer's camera to detect hand gestures and perform actions based on the gestures.
+from HandTrackingModule import HandDetector
 import cv2
 import os
 import numpy as np
@@ -14,11 +16,11 @@ cap.set(3, width)
 cap.set(4, height)
 
 # Hand Detector
-detectorHand = HandDetector(detectionCon=0.8, maxHands=2)
+detectorHand = HandDetector(detectionCon=0.9, maxHands=2)
 
 # Variables
 imgList = []
-delay = 20
+delay = 10
 buttonPressed = False
 counter = 0
 drawMode = False
@@ -42,8 +44,6 @@ while True:
 
     # Find the hand and its landmarks
     hands, img = detectorHand.findHands(img)  # with draw
-    # Draw Gesture Threshold line
-    # cv2.line(img, (0, gestureThreshold), (width, gestureThreshold), (0, 255, 0), 10)
 
     if hands and buttonPressed is False:  # If hand is detected
         hand = hands[0]
@@ -56,7 +56,6 @@ while True:
         yVal = int(np.interp(lmList[8][1], [150, height - 150], [0, height]))
         indexFinger = xVal, yVal
 
-        # if cy <= gestureThreshold:  # If hand is at the height of the face
         if fingers == [1, 0, 0, 0, 0]:
             print("Left")
             buttonPressed = True
