@@ -7,7 +7,7 @@ import numpy as np
 
 # Parameters
 width, height = 1920, 1080
-# gestureThreshold = 300
+gestureThreshold = 300
 folderPath = "presentation"
 
 # Camera Setup
@@ -45,6 +45,8 @@ while True:
     # Find the hand and its landmarks
     hands, img = detectorHand.findHands(img)  # with draw
 
+    cv2.line(img, (0, gestureThreshold), (width, gestureThreshold), (0, 255, 0), 2)
+
     if hands and buttonPressed is False:  # If hand is detected
         hand = hands[0]
         cx, cy = hand["center"]
@@ -56,6 +58,7 @@ while True:
         yVal = int(np.interp(lmList[8][1], [150, height - 150], [0, height]))
         indexFinger = xVal, yVal
 
+        # If hand is at the height of the face
         if fingers == [1, 0, 0, 0, 0]:
             print("Left")
             buttonPressed = True
