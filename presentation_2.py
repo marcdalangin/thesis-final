@@ -1,5 +1,5 @@
 # Presentation module without the gesture threshold line
-from HandTrackingModule import HandDetector
+from cvzone.HandTrackingModuleHandTrackingModule import HandDetector
 import cv2
 import os
 import numpy as np
